@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background: #0b141a;
+  color: #e9edef;
+}
+
+/* Keyboard focus: a white inner ring plus a leaf-green outer ring stays
+   visible on both the dark chat surfaces and the light admin dashboard. */
+:focus-visible {
+  outline: 2px solid transparent;
+  box-shadow: 0 0 0 2px #ffffff, 0 0 0 4px #1e4d38;
+}
+
+/* WhatsApp chat wallpaper pattern */
+.wa-bg {
+  background-color: #0b141a;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23111b21' fill-opacity='0.6'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Incoming bubble with tail */
+.wa-bubble-in {
+  background: #1f2c34;
+  border-radius: 0 8px 8px 8px;
+  position: relative;
+}
+.wa-bubble-in::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -8px;
+  width: 0;
+  height: 0;
+  border-top: 0 solid transparent;
+  border-bottom: 8px solid transparent;
+  border-right: 8px solid #1f2c34;
+}
+
+/* Outgoing bubble with tail */
+.wa-bubble-out {
+  background: #005c4b;
+  border-radius: 8px 0 8px 8px;
+  position: relative;
+}
+.wa-bubble-out::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -8px;
+  width: 0;
+  height: 0;
+  border-top: 0 solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 8px solid #005c4b;
+}
+
+/* Date/encryption chips */
+.wa-chip {
+  background: #182229;
+  border-radius: 8px;
+  padding: 5px 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  display: inline-block;
+}
+
+/* Typing indicator */
+@keyframes typingBounce {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-4px); opacity: 1; }
+}
+.typing-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #8696a0;
+  display: inline-block;
+  animation: typingBounce 1.2s infinite;
+}
+.typing-dot:nth-child(2) { animation-delay: 0.15s; }
+.typing-dot:nth-child(3) { animation-delay: 0.3s; }
+
+/* Score ring */
+@keyframes scoreReveal {
+  from { stroke-dashoffset: 283; } /* full circumference of the r=42 ring */
+}
+.score-ring {
+  transform: rotate(-90deg);
+  transform-origin: center;
+}
+
+/* Camera scan line */
+@keyframes scanLine {
+  0% { top: 0%; }
+  50% { top: calc(100% - 2px); }
+  100% { top: 0%; }
+}
+.scan-line {
+  animation: scanLine 2.5s ease-in-out infinite;
+}
+
+/* Message fade-in */
+@keyframes msgFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.msg-animate {
+  animation: msgFadeIn 0.3s ease-out forwards;
+}
+
+/* Thin scrollbar for the chat column */
+.chat-scroll::-webkit-scrollbar { width: 4px; }
+.chat-scroll::-webkit-scrollbar-track { background: transparent; }
+.chat-scroll::-webkit-scrollbar-thumb { background: rgba(134, 150, 160, 0.3); border-radius: 2px; }
+
+/* Camera corner brackets */
+@keyframes pulseCorner {
+  0%, 100% { opacity: 0.7; }
+  50% { opacity: 1; }
+}
+.corner-bracket {
+  animation: pulseCorner 2s ease-in-out infinite;
+}
